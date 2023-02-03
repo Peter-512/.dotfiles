@@ -6,7 +6,7 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-# curl https://raw.githubusercontent.com/driesvints/dotfiles/HEAD/ssh.sh | sh -s "$1"
+curl https://raw.githubusercontent.com/driesvints/dotfiles/HEAD/ssh.sh | sh -s "$1"
 
 # copy the key to clipboard
 pbcopy < ~/.ssh/id_ed25519.pub
