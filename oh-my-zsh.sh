@@ -2,5 +2,8 @@
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+echo "Downloading antigen zsh plugin manager"
+curl -L git.io/antigen > antigen.zsh
+
 #  Download iTerm2
-echo Download the latest version of iTerm2 from https://iterm2.com/downloads/stable/latest
+echo "Download the latest version of iTerm2 from https://iterm2.com/downloads/stable/latest"
