@@ -2,10 +2,12 @@
 
 mkdir ~/.ssh
 
-curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/id_ed25519.pub > ~/.ssh/id_ed25519.pub
+#curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/id_ed25519.pub > ~/.ssh/id_ed25519.pub # Figure out a way to detect if run from curl or from local file
+cp ./id_ed25519.pub ~/.ssh/id_ed25519.pub
 ansible-vault decrypt ~/.ssh/id_ed25519.pub
 
-curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/id_ed25519 > ~/.ssh/id_ed25519
+#curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/id_ed25519 > ~/.ssh/id_ed25519 # Figure out a way to detect if run from curl or from local file
+cp ./id_ed25519 ~/.ssh/id_ed25519
 ansible-vault decrypt ~/.ssh/id_ed25519
 chmod 700 ~/.ssh/id_ed25519
 

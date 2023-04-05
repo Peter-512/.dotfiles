@@ -14,25 +14,28 @@ echo "
 "
 
 echo "Installing homebrew..."
-/bin/bash -c "$(curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/brew.sh)"
+#/bin/bash -c "$(curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/brew.sh)" # figure out a way to detect if run from curl or from local file
+./brew.sh
 
 
 echo "
 -------------------
 "
 echo "Setting up the ssh key..."
-/bin/bash -c "$(curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/ssh-key.sh)"
+#/bin/bash -c "$(curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/ssh-key.sh)" # figure out a way to detect if run from curl or from local file
+./ssh-key.sh
 
 echo "
 -------------------
 "
 
-echo "Cloning dotfiles repo..."
-git clone git@github.com:Peter-512/.dotfiles.git ~/.dotfiles
-
-echo "
--------------------
-"
+# Figure out a way to detect if run from curl or from local file
+#echo "Cloning dotfiles repo..."
+#git clone git@github.com:Peter-512/.dotfiles.git ~/.dotfiles
+#
+#echo "
+#-------------------
+#"
 
 echo "Linking dotfiles..."
 ~/.dotfiles/link.sh
@@ -41,6 +44,7 @@ echo "
 -------------------
 "
 
+# Debug them, something breaks completely
 # echo "Setting up macOS defaults..."
 # ~/.dotfiles/set-defaults.sh
 
