@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# check for length of arguments
-if [ $# -eq 0 ]; then
-    echo "Please provide your email address as an argument..."
-    exit 1
-fi
-
 echo "Installing Xcode Command Line Tools for git and homebrew"
 xcode-select --install
 
