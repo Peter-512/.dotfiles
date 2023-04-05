@@ -20,10 +20,8 @@ echo "Installing homebrew..."
 echo "
 -------------------
 "
-# TODO change this to curling stored encrypted ssh key, decrypt it and put it in the right spot
 echo "Setting up the ssh key..."
 /bin/bash -c "$(curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/ssh-key.sh)"
-#read -rp "Waiting for you to paste the key into github..."
 
 echo "
 -------------------
