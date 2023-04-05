@@ -14,7 +14,7 @@ echo "
 "
 
 echo "Setting up the ssh key..."
-curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/ssh-key.sh | sh -s "$1"
+/bin/bash -c $(curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/ssh-key.sh)
 read -p "Waiting for you to paste the key into github..."
 
 echo "
@@ -35,12 +35,12 @@ echo "
 -------------------
 "
 
-echo "Setting up macOS defaults..."
-~/.dotfiles/set-defaults.sh
+# echo "Setting up macOS defaults..."
+# ~/.dotfiles/set-defaults.sh
 
-echo "
--------------------
-"
+# echo "
+# -------------------
+# "
 
 echo "Installing homebrew..."
 ~/.dotfiles/brew.sh
