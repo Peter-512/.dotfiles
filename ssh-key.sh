@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mkdir ~/.ssh
+
 curl https://raw.githubusercontent.com/Peter-512/.dotfiles/main/id_ed25519.pub > ~/.ssh/id_ed25519.pub
 ansible-vault decrypt ~/.ssh/id_ed25519.pub
 
