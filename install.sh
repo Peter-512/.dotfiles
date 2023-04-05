@@ -3,6 +3,12 @@
 echo "Installing Xcode Command Line Tools for git and homebrew"
 xcode-select --install
 
+# wait until the command line tools are installed
+echo "Waiting for Command Line Tools to install..."
+while softwareupdate --list | grep -q "Command Line Tools"; do
+    sleep 5
+done
+
 echo "
 -------------------
 "
