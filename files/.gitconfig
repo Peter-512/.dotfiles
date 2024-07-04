@@ -1,6 +1,6 @@
 [user]
 	name = Peter Buschenreiter
-	email = peter.buschenreiter@student.kdg.be
+	email = peter.buschenreiter@gmail.com
 [core]
 	autocrlf = input
 [init]
@@ -10,3 +10,11 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[rebase]
+	updateRefs = true
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
