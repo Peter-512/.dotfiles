@@ -1,19 +1,20 @@
-# Path to your dotfiles.
-export DOTFILES=$HOME/.dotfiles
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export EDITOR="nvim"
+export VISUAL="nvim"
 export ZSH="$HOME/.oh-my-zsh"
 
-export FZF_BASE="$ZSH/fzf/install/dir"
+export FZF_BASE="~/.oh-my-zsh/fzf/install/dir"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="cloud"
+#ZSH_THEME="robbyrussell"
+#ZSH_THEME="jonathan"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -65,28 +66,33 @@ ZSH_THEME="cloud"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-HIST_STAMPS="dd/mm/yyyy"
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$DOTFILES
-
-source ~/antigen.zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen apply
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+source ~/antigen.zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen apply
+
 plugins=(
-    git
+	git
     colored-man-pages
     fzf
     gitignore
+    grc
     macos
+    docker
 )
+
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,8 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -112,9 +117,35 @@ export LANG=en_US.UTF-8
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lla="ls -al"
-export GRAPHVIZ_DOT="/opt/homebrew/bin/dot"
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias lla="ls -alh"
+alias vim="nvim"
+alias cat=bat
+alias tmux=zellij
+
+source ~/.iterm2_shell_integration.zsh
+source ~/.profile
+
+# pnpm
+export PNPM_HOME="/Users/peterbuschenreiter/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# github cli completions
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+autoload -Uz compinit
+compinit
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# adding custom bin to path 
+export PATH="$HOME/bin:$PATH"
