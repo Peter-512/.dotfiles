@@ -52,6 +52,17 @@ echo "
 # -------------------
 # "
 
+echo "Installing antigen..."
+if [ ! -f ~/antigen.zsh ]; then
+    curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/bin/antigen.zsh > ~/antigen.zsh
+else
+    echo "antigen.zsh already present"
+fi
+
+echo "
+-------------------
+"
+
 echo "Installing oh-my-zsh..."
 ~/.dotfiles/oh-my-zsh.sh
 
