@@ -3,6 +3,7 @@
 	email = peter.buschenreiter@gmail.com
 [core]
 	autocrlf = input
+	pager = delta
 [init]
 	defaultBranch = main
 [filter "lfs"]
@@ -12,9 +13,25 @@
 	smudge = git-lfs smudge -- %f
 [rebase]
 	updateRefs = true
+	autosquash = true
 [rerere]
 	enabled = true
 [column]
 	ui = auto
 [branch]
 	sort = -committerdate
+[alias]
+	undo = reset --soft HEAD^
+	unstage = restore --staged
+	fixup = "!git log -n 10 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+	apply-fixup = rebase HEAD~10 --autosquash
+	gbda = !git branch --merged | grep -Ev \"(^\\*|master|main|dev)\" | xargs git branch -d
+[pull]
+	rebase = true
+
+[delta]
+	line-numbers = true
+[fetch]
+	prune = true
+	all = true
+	pruneTags = true
