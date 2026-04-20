@@ -1,16 +1,40 @@
 #!/usr/bin/env bash
+# Symlink every file/dir in ~/.dotfiles/files/ into $HOME, preserving nested
+# paths. ~/.config/nvim becomes a symlink to ~/.dotfiles/files/.config/nvim
+# (we link the leaf dir, not the whole ~/.config).
 
-# go through all files in the files folder
-for file in ~/.dotfiles/files/*; do
-    # get the filename
-    filename=$(basename "$file")
+set -euo pipefail
 
-    # check if the file is a symlink
-    if [ -L "$HOME/$filename" ]; then
-        # if it is, remove it
-        rm "$HOME/$filename"
+SRC="$HOME/.dotfiles/files"
+
+link() {
+    local target="$1"       # path under SRC
+    local dest="$HOME/${target#$SRC/}"
+
+    mkdir -p "$(dirname "$dest")"
+
+    if [ -L "$dest" ] || [ -e "$dest" ]; then
+        rm -rf "$dest"
     fi
+    ln -s "$target" "$dest"
+    echo "linked $dest -> $target"
+}
 
-    # create a symlink
-    ln -s "$file" "$HOME/$filename"
+# Top-level files and dirs (except .config, which we descend into one level)
+for entry in "$SRC"/.* "$SRC"/*; do
+    name=$(basename "$entry")
+    case "$name" in
+        .|..|.DS_Store) continue ;;
+    esac
+    [ -e "$entry" ] || continue
+
+    if [ "$name" = ".config" ]; then
+        # Symlink each direct child of .config (nvim, kitty, ...) individually
+        for sub in "$entry"/*; do
+            [ -e "$sub" ] || continue
+            link "$sub"
+        done
+    else
+        link "$entry"
+    fi
 done

@@ -42,3 +42,7 @@ Temporary Items
 .apdisk
 
 .idea
+
+# Never commit the real env file — only .env.example is tracked.
+files/.env
+
